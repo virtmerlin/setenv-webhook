@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: setenv-webhook-deployment
+  labels:
+    app: setenv-webhook
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: setenv-webhook
+    spec:
+      containers:
+        - name: setenv-webhook
+          image: virtmerlin/setenv-webhook:v1
+          imagePullPolicy: Always
+          args:
+            - -tlsCertFile=/etc/webhook/certs/cert.pem
+            - -tlsKeyFile=/etc/webhook/certs/key.pem
+            - -alsologtostderr
+            - -v=4
+            - 2>&1
+          volumeMounts:
+            - name: webhook-certs
+              mountPath: /etc/webhook/certs
+              readOnly: true
+            - name: webhook-config
+              mountPath: /etc/webhook/config
+      volumes:
+        - name: webhook-certs
+          secret:
+            secretName: setenv-webhook-certs
+        - name: webhook-config
+          configMap:
+            name: setenv-webhook-configmap

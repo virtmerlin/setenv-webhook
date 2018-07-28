@@ -1,0 +1,7 @@
+dep ensure -v
+rm -rf set-env-webhook || echo "Old build already gone ..."
+CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o set-env-webhook .
+docker build --no-cache -t virtmerlin/setenv-webhook:v1 .
+rm -rf set-env-webhook
+
+docker push virtmerlin/setenv-webhook:v1

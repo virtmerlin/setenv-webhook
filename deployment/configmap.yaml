@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setenv-webhook-configmap
+data:
+#  sidecarconfig.yaml: |
+#    containers:
+#      - name: sidecar-nginx
+#        image: nginx:1.12.2
+#        imagePullPolicy: IfNotPresent
+#        ports:
+#          - containerPort: 80
+#        volumeMounts:
+#          - name: nginx-conf
+#            mountPath: /etc/nginx
+#    volumes:
+#      - name: nginx-conf
+#        configMap:
+#          name: nginx-configmap
+  setenvconfig.yaml: |
+    env:
+    - name: HTTP_PROXY
+      value: http://USERNAME:PASSWORD@10.0.1.1:8080/
+    - name: HTTPS_PROXY
+      value: https://USERNAME:PASSWORD@10.0.0.1:8080/
+    - name: NO_PROXY
+      value: master.hostname.example.com
+    - name: FOO
+      value: "MANCHU"

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: setenv-webhook-svc
+  labels:
+    app: setenv-webhook
+spec:
+  ports:
+  - port: 443
+    targetPort: 443
+  selector:
+    app: setenv-webhook
