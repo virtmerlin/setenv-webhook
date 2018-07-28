@@ -7,7 +7,7 @@ set -o nounset
 set -o pipefail
 
 #export CA_BUNDLE=$(kubectl get configmap -n kube-system extension-apiserver-authentication -o=jsonpath='{.data.client-ca-file}' | base64 | tr -d '\n')
-export CA_BUNDLE=$(kubectl get secret -n default setenv-webhook-certs kubectl get secret -n default setenv-webhook-certs -o 'go-template={{index .data "cert.pem"}}' | base64 | tr -d '\n')
+export CA_BUNDLE=$(kubectl get secret -n default setenv-webhook-certs -o 'go-template={{index .data "cert.pem"}}' | tr -d '\n')
 
 
 
