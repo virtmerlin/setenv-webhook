@@ -3,20 +3,6 @@ kind: ConfigMap
 metadata:
   name: setenv-webhook-configmap
 data:
-#  sidecarconfig.yaml: |
-#    containers:
-#      - name: sidecar-nginx
-#        image: nginx:1.12.2
-#        imagePullPolicy: IfNotPresent
-#        ports:
-#          - containerPort: 80
-#        volumeMounts:
-#          - name: nginx-conf
-#            mountPath: /etc/nginx
-#    volumes:
-#      - name: nginx-conf
-#        configMap:
-#          name: nginx-configmap
   setenvconfig.yaml: |
     env:
     - name: HTTP_PROXY
