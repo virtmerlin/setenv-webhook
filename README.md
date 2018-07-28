@@ -19,6 +19,7 @@ In addition, the `MutatingAdmissionWebhook` and `ValidatingAdmissionWebhook` adm
 
 1. Setup dep
 
+   **NOTE:**  You only need to perform this step if you are modifying the webhook or want to rebuild it.  Otherwise you can skip to Deploy and use the hosted image on Dockerhub to test.  
    The repo uses [dep](https://github.com/golang/dep) as the dependency management tool for its Go codebase. Install `dep` by the following command:
 
 ```
